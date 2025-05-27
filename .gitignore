@@ -6,3 +6,4 @@ tests/
 .autopush_timestamp.txt
 *.cmd
 .env
+.vscode
