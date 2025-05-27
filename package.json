@@ -1,0 +1,31 @@
+{
+  "name": "nodedsl",
+  "version": "1.0.0",
+  "description": "A Node.js DSL server, Universal and easy to use and learn",
+  "main": "server.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/witcarryllanto123/NodeDSL-Project.git"
+  },
+  "keywords": [
+    "nodedsl"
+  ],
+  "author": "Witcarry",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/witcarryllanto123/NodeDSL-Project/issues"
+  },
+  "homepage": "https://github.com/witcarryllanto123/NodeDSL-Project#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "http": "^0.0.1-security",
+    "multer": "^2.0.0"
+  }
+}
