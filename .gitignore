@@ -1,8 +1,7 @@
 # Ignore folders
 tests/
-Fail 1/
+.hiddenfolder/
 
 # stuff
 .autopush_timestamp.txt
-hello.txt
 *.cmd
