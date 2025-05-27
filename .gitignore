@@ -1,0 +1,8 @@
+# Ignore folders
+tests/
+Fail 1/
+
+# stuff
+.autopush_timestamp.txt
+hello.txt
+*.cmd
