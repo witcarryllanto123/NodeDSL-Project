@@ -1,0 +1,89 @@
+[
+    {
+        "server-specific-commands": [
+                        {
+                "description": "Get server status",
+                "command": "dsl",
+                "options": {
+                    "sendstatus": true //indicates whether to send server status
+                },
+                "debug": false //debug mode, if true, will log additional information
+            },
+            {
+                "description": "Get server logs",
+                "command": "dsl",
+                "options": {
+                    "sendlogs": true, //indicates whether to send server logs
+                    "loglevel": "info" //log level to be fetched
+                },
+                "debug": false //debug mode, if true, will log additional information
+            },
+            {
+                "description": "Restart server",
+                "command": "dsl",
+                "options": {
+                    "action": "restart", //action to be performed
+                    "sendrestartstatus": true //indicates whether to send restart status
+                },
+                "debug": false //debug mode, if true, will log additional information
+            },
+            {
+                "description": "Shutdown server",
+                "command": "dsl",
+                "options": {
+                    "action": "shutdown", //action to be performed
+                    "sendshutdownstatus": true //indicates whether to send shutdown status
+                },
+                "debug": false //debug mode, if true, will log additional information
+            },
+            {
+                "description": "Get server configuration",
+                "command": "dsl",
+                "options": {
+                    "sendconfig": true //indicates whether to send server configuration
+                },
+                "debug": false //debug mode, if true, will log additional information
+            },
+            {
+                "description": "Update server configuration",
+                "command": "dsl",
+                "options": {
+                    "updateconfig": true, //indicates whether to update server configuration
+                    "configdata": { //configuration data to be updated
+                        "port": 3000, //new port number
+                        "host": "localhost", //new host name
+                        "maxConnections": 100 //new maximum connections
+                    },
+                    "sendupdateconfigstatus": true //indicates whether to send update configuration status
+                },
+                "debug": false //debug mode, if true, will log additional information
+            },
+            {
+                "description": "Get server statistics",
+                "command": "dsl",
+                "options": {
+                    "sendstats": true //indicates whether to send server statistics
+                },
+                "debug": false //debug mode, if true, will log additional information
+            },
+            {
+                "description": "Clear server cache",
+                "command": "dsl",
+                "options": {
+                    "clearcache": true, //indicates whether to clear server cache
+                    "sendclearcachestatus": true //indicates whether to send clear cache status
+                },
+                "debug": false //debug mode, if true, will log additional information
+            },
+            {
+                "description": "Factory reset server",
+                "command": "dsl",
+                "options": {
+                    "action": "factoryreset", //action to be performed. BE CARUFUL THIS COMMAND CANNOT BE UNDONE. ALL FILES, DATA, YOU NAME IT. WILL BE DELETED PERMANENTLY.
+                    "sendfactoryresetstatus": true //indicates whether to send factory reset status
+                },
+                "debug": false //debug mode, if true, will log additional information
+            }
+        ]
+    }
+]

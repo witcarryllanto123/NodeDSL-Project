@@ -1,0 +1,123 @@
+[
+    {
+"overidecommand": {
+            "description": "Override a file on server",
+            "command": "override", //be careful with this command, it will override the file permanently. I would like to make a recycle bin folder but for storage reasons, I will not do that.
+            "options": {
+                "file": true, //indicates that this command is for overriding a file
+                "filename": "testfile.png", //name of the file to be overridden
+                "source": "/path/to/override", //source path where the file will be overridden
+                "json": "/public/files/file_data.json", //path to JSON file to override file data
+                "id": "testfile", //unique identifier for the file
+                "sendoverridemetadata": true //indicates whether to send override metadata
+            },
+            "debug": false //debug mode, if true, will log additional information
+        },
+        "how-it-works-override": "The client JavaScript will send the command in a JSON format(like this one above) to the server through the main API(ex: <serveripandport>/dsl). The server will override the file at the specified source path(configured in the command). If 'sendoverridemetadata' is true, the server will also override the file metadata from the specified JSON file path(configured in the command) and dump it to the main API(<serveripandport>/dsl). The server will return a response to the client JS with the status of the operation. If the operation is successful, the server will return a success message with the file data and metadata. If the operation fails, the server will return an error message with the reason for the failure.",
+        "expected-output-override": {
+            "status": "success", //status of the operation
+            "message": "File overridden successfully", //message for the operation
+            "data": { //data object containing file data
+                "filename": "testfile.png", //name of the file
+                "filedestination": "/path/to/override", //source path where the file was overridden
+                "targetfile": "/path/to/override/testfile.png", //target file path
+                "filetype": "image/png", //type of the file
+                "filesize": 1024, //size of the file in bytes. The client JS should calculate this
+                "id": "testfile", //unique identifier for the file
+                "category": "file/image" //category of the file
+            }
+            // If 'sendoverridemetadata' is true, the server will also return the file metadata in a stream format on the send API(<serveripandport>/send) for the Client JS to fetch using the fetch API.
+        },
+        "overidecommand2": {
+            "description": "Override a user data on server", 
+            //be careful with this command, it will override the user data permanently. This can be used for updating user accounts or any other user-related data.
+            "command": "override",
+            "options": {
+                "file": false, //indicates that this command is not for overriding a file
+                "type": "user", //type of the data to be overridden
+                "id": "<unique_id>", //unique identifier for the user data
+                "changevalues": { //values to be changed in the user data
+                    "username": "newtestuser", //new username for the user
+                    "email": "newtest@test.com", //new email for the user
+                    "phone": "0987654321" //new phone number for the user
+                },
+                "json": "/public/userdata/users.json", //path to JSON file to override user data
+                "sendoverridemetadata": true //indicates whether to send override metadata
+            },
+            "debug": false //debug mode, if true, will log additional information
+        },
+        "how-it-works-override2": "The client JavaScript will send the command in a JSON format(like this one above) to the server through the main API(ex: <serveripandport>/dsl). The server will override the user data from the specified JSON file path(configured in the command). If 'sendoverridemetadata' is true, the server will also override the user data and dump it to the main API(<serveripandport>/dsl). The server will return a response to the client JS with the status of the operation. If the operation is successful, the server will return a success message with the user data. If the operation fails, the server will return an error message with the reason for the failure.",
+        "expected-output-override2": {
+            "status": "success", //status of the operation
+            "message": "User data overridden successfully", //message for the operation
+            "data": { //data object containing user data
+                "username": "newtestuser", //new username of the user
+                "email": "newtest@test.com",
+                "phone": "0987654321", //new phone number of the user
+                "name": "Test User", //name of the user
+                "address": "123 Test Street, Test City, Test Country", //address of the user
+                "dob": "2000-01-01", //date of birth of the user
+                "password": "newtestpassword" //password of the user
+                // "id": "<unique_id>" //unique identifier for the user. This suposed to be used but. Who needs ID's anyway? I mean, we are not using any database here, so why bother with IDs?
+        }
+            // If 'sendoverridemetadata' is true, the server will also return the user data in a stream format on the send API(<serveripandport>/send) for the Client JS to fetch using the fetch API.
+        },
+        "overidecommand3": {
+            "description": "Override a string in a JSON file",
+            "command": "override",
+            "options": {
+                "file": false, //indicates that this command is not for overriding a file
+                "type": "string", //type of the data to be overridden
+                "id": "<unique_id>", //unique identifier for the string
+                "changevalues": { //values to be changed in the string data
+                    "content": "This is an updated test string." //new string content
+                },
+                "json": "/public/datas/random_data.json", //path to JSON file to override string data
+                "sendoverridemetadata": true //indicates whether to send override metadata
+            },
+            "debug": false //debug mode, if true, will log additional information
+        },
+        "how-it-works-override3": "The client JavaScript will send the command in a JSON format(like this one above) to the server through the main API(ex: <serveripandport>/dsl). The server will override the string data from the specified JSON file path(configured in the command). If 'sendoverridemetadata' is true, the server will also override the string data and dump it to the main API(<serveripandport>/dsl). The server will return a response to the client JS with the status of the operation. If the operation is successful, the server will return a success message with the string data. If the operation fails, the server will return an error message with the reason for the failure.",
+        "expected-output-override3": {
+            "status": "success", //status of the operation
+            "message": "String data overridden successfully", //message for the operation
+            "data": { //data object containing string data
+                "content": "This is an updated test string.", //the updated string content
+                "id": "<unique_id>", //unique identifier for the string
+                "category": "text/plain" //category of the string
+            }
+            // If 'sendoverridemetadata' is true, the server will also return the string data in a stream format on the send API(<serveripandport>/send) for the Client JS to fetch using the fetch API.
+        },
+        "overidecommand4": {
+            "description": "Override a JSON object in a JSON file",
+            "command": "override",
+            "options": {
+                "file": false, //indicates that this command is not for overriding a file
+                "type": "json", //type of the data to be overridden
+                "id": "<unique_id>", //unique identifier for the JSON object
+                "changevalues": { //values to be changed in the JSON data
+                    "key1": "newvalue1", //new value for key1
+                    "key2": "newvalue2" //new value for key2
+                },
+                "json": "/public/datas/random_data.json", //path to JSON file to override JSON data
+                "sendoverridemetadata": true //indicates whether to send override metadata
+            },
+            "debug": false //debug mode, if true, will log additional information
+        },
+        "how-it-works-override4": "The client JavaScript will send the command in a JSON format(like this one above) to the server through the main API(ex: <serveripandport>/dsl). The server will override the JSON data from the specified JSON file path(configured in the command). If 'sendoverridemetadata' is true, the server will also override the JSON data and dump it to the main API(<serveripandport>/dsl). The server will return a response to the client JS with the status of the operation. If the operation is successful, the server will return a success message with the JSON data. If the operation fails, the server will return an error message with the reason for the failure.",
+        "expected-output-override4": {
+            "status": "success", //status of the operation
+            "message": "JSON data overridden successfully", //message for the operation
+            "data": { //data object containing JSON data
+                "data": { //the updated JSON object
+                    "key1": "newvalue1",
+                    "key2": "newvalue2",
+                    "key3": "value3"
+                },
+                "id": "<unique_id>", //unique identifier for the JSON object
+                "category": "application/json" //category of the JSON object
+            }
+            // If 'sendoverridemetadata' is true, the server will also return the JSON data in a stream format on the send API(<serveripandport>/send) for the Client JS to fetch using the fetch API.
+        }
+    }
+]

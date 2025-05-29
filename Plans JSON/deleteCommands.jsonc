@@ -1,0 +1,111 @@
+[
+    {
+        "deletecommand": {
+            "description": "Delete a file from server",
+            "command": "delete", //be careful with this command, it will delete the file permanently. I would like to make a recycle bin folder but for storage reasons, I will not do that.    
+            "options": {
+                "file": true, //indicates that this command is for deleting a file
+                "filename": "testfile.png", //name of the file to be deleted
+                "source": "/path/to/delete", //source path where the file will be deleted from
+                "json": "/public/files/file_data.json", //path to JSON file to delete file data
+                "id": "testfile", //unique identifier for the file
+                "senddeletemetadata": true //indicates whether to send delete metadata
+            },
+            "debug": false //debug mode, if true, will log additional information
+        },
+        "how-it-works-delete": "The client JavaScript will send the command in a JSON format(like this one above) to the server through the main API(ex: <serveripandport>/dsl). The server will delete the file from the specified source path(configured in the command). If 'senddeletemetadata' is true, the server will also delete the file metadata from the specified JSON file path(configured in the command) and dump it to the main API(<serveripandport>/dsl). The server will return a response to the client JS with the status of the operation. If the operation is successful, the server will return a success message with the file data and metadata. If the operation fails, the server will return an error message with the reason for the failure.",
+        "expected-output-delete": {
+            "status": "success", //status of the operation
+            "message": "File deleted successfully", //message for the operation
+            "data": { //data object containing file data
+                "filename": "testfile.png", //name of the file
+                "filedestination": "/path/to/delete", //source path where the file was deleted from
+                "targetfile": "/path/to/delete/testfile.png", //target file path
+                "filetype": "image/png", //type of the file
+                "filesize": 1024, //size of the file in bytes. The client JS should calculate this
+                "id": "testfile", //unique identifier for the file
+                "category": "file/image" //category of the file
+            }
+            // If 'senddeletemetadata' is true, the server will also return the file metadata in a stream format on the send API(<serveripandport>/send) for the Client JS to fetch using the fetch API.
+        },
+        "deletecommand2": {
+            "description": "Delete a user data from server", 
+            //be careful with this command, it will delete the user data permanently. This can be used for deleting user accounts or any other user-related data.
+            "command": "delete",
+            "options": {
+                "file": false, //indicates that this command is not for deleting a file
+                "type": "user", //type of the data to be deleted
+                "id": "<unique_id>", //unique identifier for the user data
+                "json": "/public/userdata/users.json", //path to JSON file to delete user data
+                "senddeletemetadata": true //indicates whether to send delete metadata
+            },
+            "debug": false //debug mode, if true, will log additional information
+        },
+        "how-it-works-delete2": "The client JavaScript will send the command in a JSON format(like this one above) to the server through the main API(ex: <serveripandport>/dsl). The server will delete the user data from the specified JSON file path(configured in the command). If 'senddeletemetadata' is true, the server will also delete the user data and dump it to the main API(<serveripandport>/dsl). The server will return a response to the client JS with the status of the operation. If the operation is successful, the server will return a success message with the user data. If the operation fails, the server will return an error message with the reason for the failure.",
+        "expected-output-delete2": {
+            "status": "success", //status of the operation
+            "message": "User data deleted successfully", //message for the operation
+            "data": { //data object containing user data
+                "username": "testuser", //username of the user
+                "email": "test@test.com",
+                "phone": "1234567890", //phone number of the user
+                "name": "Test User", //name of the user
+                "address": "123 Test Street, Test City, Test Country", //address of the user
+                "dob": "2000-01-01", //date of birth of the user
+                "password": "testpassword", //password of the user
+                "id": "<unique_id>" //unique identifier for the user
+            }
+            // If 'senddeletemetadata' is true, the server will also return the user data in a stream format on the send API(<serveripandport>/send) for the Client JS to fetch using the fetch API.
+        },
+        "deletecommand3": {
+            "description": "Delete a string from a JSON file",
+            "command": "delete",
+            "options": {
+                "file": false, //indicates that this command is not for deleting a file
+                "type": "string", //type of the data to be deleted
+                "id": "<unique_id>", //unique identifier for the string
+                "json": "/public/datas/random_data.json", //path to JSON file to delete string data
+                "senddeletemetadata": true //indicates whether to send delete metadata
+            },
+            "debug": false //debug mode, if true, will log additional information
+        },
+        "how-it-works-delete3": "The client JavaScript will send the command in a JSON format(like this one above) to the server through the main API(ex: <serveripandport>/dsl). The server will delete the string data from the specified JSON file path(configured in the command). If 'senddeletemetadata' is true, the server will also delete the string data and dump it to the main API(<serveripandport>/dsl). The server will return a response to the client JS with the status of the operation. If the operation is successful, the server will return a success message with the string data. If the operation fails, the server will return an error message with the reason for the failure.",
+        "expected-output-delete3": {
+            "status": "success", //status of the operation
+            "message": "String data deleted successfully", //message for the operation
+            "data": { //data object containing string data
+                "content": "This is a test string to be saved.", //the string content
+                "id": "<unique_id>", //unique identifier for the string
+                "category": "text/plain" //category of the string
+            }
+            // If 'senddeletemetadata' is true, the server will also return the string data in a stream format on the send API(<serveripandport>/send) for the Client JS to fetch using the fetch API.
+        },
+        "deletecommand4": {
+            "description": "Delete a JSON object from a JSON file",
+            "command": "delete",
+            "options": {
+                "file": false, //indicates that this command is not for deleting a file
+                "type": "json", //type of the data to be deleted
+                "id": "<unique_id>", //unique identifier for the JSON object
+                "json": "/public/datas/random_data.json", //path to JSON file to delete JSON data
+                "senddeletemetadata": true //indicates whether to send delete metadata
+            },
+            "debug": false //debug mode, if true, will log additional information
+        },
+        "how-it-works-delete4": "The client JavaScript will send the command in a JSON format(like this one above) to the server through the main API(ex: <serveripandport>/dsl). The server will delete the JSON data from the specified JSON file path(configured in the command). If 'senddeletemetadata' is true, the server will also delete the JSON data and dump it to the main API(<serveripandport>/dsl). The server will return a response to the client JS with the status of the operation. If the operation is successful, the server will return a success message with the JSON data. If the operation fails, the server will return an error message with the reason for the failure.",
+        "expected-output-delete4": {
+            "status": "success", //status of the operation
+            "message": "JSON data deleted successfully", //message for the operation
+            "data": { //data object containing JSON data
+                "data": { //the JSON object
+                    "key1": "value1",
+                    "key2": "value2",
+                    "key3": "value3"
+                },
+                "id": "<unique_id>", //unique identifier for the JSON object
+                "category": "application/json" //category of the JSON object
+            }
+            // If 'senddeletemetadata' is true, the server will also return the JSON data in a stream format on the send API(<serveripandport>/send) for the Client JS to fetch using the fetch API.
+        }
+    }
+]

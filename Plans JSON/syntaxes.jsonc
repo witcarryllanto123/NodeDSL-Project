@@ -1,0 +1,36 @@
+[
+    {
+        "name": "NodeDSL",
+        "description": "NodeDSL is a domain-specific language designed for creating and managing Node.js applications. It provides a structured way to define application components, their relationships, and configurations.",
+        "version": "1.0.0",
+        "syntax": "json",
+        "author": "Witcarry Llanto",
+        "rem": "Replaned syntaxes for NodeDSL. This is a JSON format that is easy to read and write. It is designed to be used with Node.js applications.",
+        // In this instruction jsonc
+        // NodeDSL syntaxes is a JSON form. Very easy to read and write.
+        "savecommand": [
+            //Look for the file below
+            "/saveCommands.jsonc"
+        ],
+        "getcommand": [
+            //look for the file below
+            "/getCommands.jsonc"
+        ],
+        "findmatchcommand": [
+            //look for the file below
+            "/findmatchCommands.jsonc"
+        ],
+        "deletecommand": [
+            //look for the file below
+            "/deleteCommands.jsonc"
+        ],
+        "overidecommand": [
+            //look for the file below
+            "/overideCommands.jsonc"
+        ],
+        "server-specific-commands": [ //this commands directly talks to the server and not to be used by clients. ADMIN ONLY
+            //look for the file below
+            "/serverSpecificCommands.jsonc"
+        ]
+    }
+]

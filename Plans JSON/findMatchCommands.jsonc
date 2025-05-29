@@ -1,0 +1,141 @@
+[
+    {
+"findmatchcommand": {
+            "description": "Find a match in a JSON file",
+            "command": "findmatch",
+            "options": {
+                "file": false, //indicates that this command is not for saving a file
+                "type": "json", //type of the data to be matched
+                "json": "/public/datas/random_data.json", //path to JSON file to find match
+                "values": { //values to be matched
+                    "key1": "value1", //key-value pair to be matched
+                    "key2": "value2" //another key-value pair to be matched
+                },
+                "sendmatchdata": true //indicates whether to send match data
+            },
+            "debug": false //debug mode, if true, will log additional information
+        },  
+        "how-it-works-findmatch": "The client JavaScript will send the command in a JSON format(like this one above) to the server through the main API(ex: <serveripandport>/dsl). The server will search for the specified key-value pairs in the JSON file at the specified path(configured in the command). If 'sendmatchdata' is true, the server will also return the matched data to the main API(<serveripandport>/dsl). The server will return a response to the client JS with the status of the operation. If the operation is successful, the server will return a success message with the matched data. If no match is found, it will return a message indicating that no match was found. If the operation fails, the server will return an error message with the reason for the failure.",
+        "expected-output-findmatch": {
+            "status": "success", //status of the operation
+            "message": "Match found successfully", //message for the operation
+            "data": { //data object containing matched data
+                "matches": [ //array of matched objects
+                    {
+                        "key1": "value1",
+                        "key2": "value2"
+                    },
+                    {
+                        "key1": "value1",
+                        "key2": "value2"
+                    }
+                ],
+                "id": "<unique_id>", //unique identifier for the match
+                "category": "application/json" //category of the match
+            }
+            // If 'sendmatchdata' is true, the server will also return the matched data in a stream format on the send API(<serveripandport>/send) for the Client JS to fetch using the fetch API.
+        },
+        "findmatchcommand2": {
+            "description": "Find a match in a user data JSON file. Also used for login logic.",
+            "command": "findmatch",
+            "options": {
+                "file": false, //indicates that this command is not for saving a file
+                "type": "user", //type of the data to be matched
+                "json": "/public/userdata/users.json", //path to JSON file to find match
+                "values": { //values to be matched
+                    "username": "testuser", //username to be matched
+                    "email": "test@test.com", //email to be matched
+                    "phone": "1234567890" //phone number to be matched
+                },
+                "sendmatchdata": true //indicates whether to send match data
+            },
+            "debug": false //debug mode, if true, will log additional information
+        },
+        "how-it-works-findmatch2": "The client JavaScript will send the command in a JSON format(like this one above) to the server through the main API(ex: <serveripandport>/dsl). The server will search for the specified key-value pairs in the user data JSON file at the specified path(configured in the command). If 'sendmatchdata' is true, the server will also return the matched user data to the main API(<serveripandport>/dsl). The server will return a response to the client JS with the status of the operation. If the operation is successful, the server will return a success message with the matched user data. If no match is found, it will return a message indicating that no match was found. If the operation fails, the server will return an error message with the reason for the failure.",
+        "expected-output-findmatch2": {
+            "status": "success", //status of the operation
+            "message": "Match found successfully", //message for the operation
+            "data": { //data object containing matched user data
+                "matches": [ //array of matched user objects
+                    {
+                        "username": "testuser",
+                        "email": "test@test.com",
+                        "phone": "1234567890",
+                        "name": "Test User",
+                        "address": "123 Test Street, Test City, Test Country",
+                        "dob": "2000-01-01",
+                        "password": "testpassword",
+                        "id": "<unique_id>" //unique identifier for the user
+                    }
+                ],
+                "id": "<unique_id>", //unique identifier for the match
+                "category": "application/json" //category of the match
+            }
+        },
+        "findmatchcommand3": {
+            "description": "Find a match in a string data JSON file",
+            "command": "findmatch",
+            "options": {
+                "file": false, //indicates that this command is not for saving a file
+                "type": "string", //type of the data to be matched
+                "json": "/public/datas/random_data.json", //path to JSON file to find match
+                "values": { //values to be matched
+                    "content": "This is a test string to be saved." //string content to be matched
+                },
+                "sendmatchdata": true //indicates whether to send match data
+            },
+            "debug": false //debug mode, if true, will log additional information
+        },
+        "how-it-works-findmatch3": "The client JavaScript will send the command in a JSON format(like this one above) to the server through the main API(ex: <serveripandport>/dsl). The server will search for the specified string content in the string data JSON file at the specified path(configured in the command). If 'sendmatchdata' is true, the server will also return the matched string data to the main API(<serveripandport>/dsl). The server will return a response to the client JS with the status of the operation. If the operation is successful, the server will return a success message with the matched string data. If no match is found, it will return a message indicating that no match was found. If the operation fails, the server will return an error message with the reason for the failure.",
+        "expected-output-findmatch3": {
+            "status": "success", //status of the operation
+            "message": "Match found successfully", //message for the operation
+            "data": { //data object containing matched string data
+                "matches": [ //array of matched string objects
+                    {
+                        "content": "This is a test string to be saved.", //the string content
+                        "id": "<unique_id>", //unique identifier for the string
+                        "category": "text/plain" //category of the string
+                    }
+                ],
+                "id": "<unique_id>", //unique identifier for the match
+                "category": "application/json" //category of the match
+            }
+        },
+        "findmatchcommand4": {
+            "description": "Find a match in a JSON data JSON file",
+            "command": "findmatch",
+            "options": {
+                "file": false, //indicates that this command is not for saving a file
+                "type": "json", //type of the data to be matched
+                "json": "/public/datas/random_data.json", //path to JSON file to find match
+                "values": { //values to be matched
+                    "key1": "value1", //key-value pair to be matched
+                    "key2": "value2" //another key-value pair to be matched
+                },
+                "sendmatchdata": true //indicates whether to send match data
+            },
+            "debug": false //debug mode, if true, will log additional information
+        },
+        "how-it-works-findmatch4": "The client JavaScript will send the command in a JSON format(like this one above) to the server through the main API(ex: <serveripandport>/dsl). The server will search for the specified key-value pairs in the JSON data JSON file at the specified path(configured in the command). If 'sendmatchdata' is true, the server will also return the matched JSON data to the main API(<serveripandport>/dsl). The server will return a response to the client JS with the status of the operation. If the operation is successful, the server will return a success message with the matched JSON data. If no match is found, it will return a message indicating that no match was found. If the operation fails, the server will return an error message with the reason for the failure.",
+        "expected-output-findmatch4": {
+            "status": "success", //status of the operation
+            "message": "Match found successfully", //message for the operation
+            "data": { //data object containing matched JSON data
+                "matches": [ //array of matched JSON objects
+                    {
+                        "data": { //the JSON object
+                            "key1": "value1",
+                            "key2": "value2",
+                            "key3": "value3"
+                        },
+                        "id": "<unique_id>", //unique identifier for the JSON object
+                        "category": "application/json" //category of the JSON object
+                    }
+                ],
+                "id": "<unique_id>", //unique identifier for the match
+                "category": "application/json" //category of the match
+            }
+        }
+    }
+]

@@ -1,0 +1,111 @@
+[
+    {
+        "getcommand": {
+            "description": "Get a file from server",
+            "command": "get",
+            "options": {
+                "file": true, //indicates that this command is for getting a file
+                "filename": "testfile.png", //name of the file to be retrieved
+                "source": "/path/to/get", //source path where the file will be retrieved from
+                "json": "/public/files/file_data.json", //path to JSON file to get file data
+                "id": "testfile", //unique identifier for the file
+                "sendfilemetadata": true //indicates whether to send file metadata
+            },
+            "debug": false //debug mode, if true, will log additional information
+        },
+        "how-it-works-get": "The client JavaScript will send the command in a JSON format(like this one above) to the server through the main API(ex: <serveripandport>/dsl). The server will retrieve the file from the specified source path(configured in the command). The server will pause for 0.5s then dumping the file contents(wherever if its binary or text) to the send API(<serveripandport>/send). If 'sendfilemetadata' is true, the server will also retrieve the file metadata from the specified JSON file path(configured in the command) and dump it to the main API(<serveripandport>/dsl). The server will return a response to the client JS with the status of the operation. If the operation is successful, the server will return a success message with the file data and metadata. If the operation fails, the server will return an error message with the reason for the failure.",
+        "expected-output-get": {
+            "status": "success", //status of the operation
+            "message": "File retrieved successfully", //message for the operation
+            "data": { //data object containing file data
+                "filename": "testfile.png", //name of the file
+                "filedestination": "/path/to/save", //source path where the file was retrieved from
+                "targetfile": "/path/to/save/testfile.png", //target file path
+                "filetype": "image/png", //type of the file
+                "filesize": 1024, //size of the file in bytes. The client JS should calculate this
+                "id": "testfile", //unique identifier for the file
+                "category": "file/image" //category of the file
+            }
+            // If 'sendfilemetadata' is true, the server will also return the file metadata
+            // Eventually, the server will return the file contents in a stream format on the send API(<serveripandport>/send) for the Client JS to fetch using the fetch API.
+        },
+        "getcommand2": {
+            "description": "Get a user data from server", //unfortunately, only admins can do this for security reasons.
+            "command": "get",
+            "options": {
+                "file": false, //indicates that this command is not for getting a file
+                "type": "user", //type of the data to be retrieved
+                "id": "<unique_id>", //unique identifier for the user data
+                "json": "/public/userdata/users.json", //path to JSON file to get user data
+                "senduserdata": true //indicates whether to send user data
+            },
+            "debug": false //debug mode, if true, will log additional information
+        },
+        "how-it-works-get2": "The client JavaScript will send the command in a JSON format(like this one above) to the server through the main API(ex: <serveripandport>/dsl). The server will retrieve the user data from the specified JSON file path(configured in the command). If 'senduserdata' is true, the server will also retrieve the user data and dump it to the main API(<serveripandport>/dsl). The server will return a response to the client JS with the status of the operation. If the operation is successful, the server will return a success message with the user data. If the operation fails, the server will return an error message with the reason for the failure.",
+        "expected-output-get2": {
+            "status": "success", //status of the operation
+            "message": "User data retrieved successfully", //message for the operation
+            "data": { //data object containing user data
+                "username": "testuser", //username of the user
+                "email": "test@test.com",
+                "phone": "1234567890", //phone number of the user
+                "name": "Test User", //name of the user
+                "address": "123 Test Street, Test City, Test Country", //address of the user
+                "dob": "2000-01-01", //date of birth of the user
+                "password": "testpassword", //password of the user
+                "id": "<unique_id>" //unique identifier for the user
+            }
+            // If 'senduserdata' is true, the server will also return the user data in a stream format on the send API(<serveripandport>/send) for the Client JS to fetch using the fetch API.
+        },
+        "getcommand3": {
+            "description": "Get a string from server",
+            "command": "get",
+            "options": {
+                "file": false, //indicates that this command is not for getting a file
+                "type": "string", //type of the data to be retrieved
+                "id": "<unique_id>", //unique identifier for the string
+                "json": "/public/datas/random_data.json", //path to JSON file to get string data
+                "sendstringdata": true //indicates whether to send string data
+            },
+            "debug": false //debug mode, if true, will log additional information
+        },
+        "how-it-works-get3": "The client JavaScript will send the command in a JSON format(like this one above) to the server through the main API(ex: <serveripandport>/dsl). The server will retrieve the string data from the specified JSON file path(configured in the command). If 'sendstringdata' is true, the server will also retrieve the string data and dump it to the main API(<serveripandport>/dsl). The server will return a response to the client JS with the status of the operation. If the operation is successful, the server will return a success message with the string data. If the operation fails, the server will return an error message with the reason for the failure.",
+        "expected-output-get3": {
+            "status": "success", //status of the operation
+            "message": "String data retrieved successfully", //message for the operation
+            "data": { //data object containing string data
+                "content": "This is a test string to be saved.", //the string content
+                "id": "<unique_id>", //unique identifier for the string
+                "category": "text/plain" //category of the string
+            }
+            // If 'sendstringdata' is true, the server will also return the string data in a stream format on the send API(<serveripandport>/send) for the Client JS to fetch using the fetch API.
+        },
+        "getcommand4": {
+            "description": "Get a JSON object from server",
+            "command": "get",
+            "options": {
+                "file": false, //indicates that this command is not for getting a file
+                "type": "json", //type of the data to be retrieved
+                "id": "<unique_id>", //unique identifier for the JSON object
+                "json": "/public/datas/random_data.json", //path to JSON file to get JSON data
+                "sendjsondata": true //indicates whether to send JSON data
+            },
+            "debug": false //debug mode, if true, will log additional information
+        },
+        "how-it-works-get4": "The client JavaScript will send the command in a JSON format(like this one above) to the server through the main API(ex: <serveripandport>/dsl). The server will retrieve the JSON data from the specified JSON file path(configured in the command). If 'sendjsondata' is true, the server will also retrieve the JSON data and dump it to the main API(<serveripandport>/dsl). The server will return a response to the client JS with the status of the operation. If the operation is successful, the server will return a success message with the JSON data. If the operation fails, the server will return an error message with the reason for the failure.",
+        "expected-output-get4": {
+            "status": "success", //status of the operation
+            "message": "JSON data retrieved successfully", //message for the operation
+            "data": { //data object containing JSON data
+                "data": { //the JSON object
+                    "key1": "value1",
+                    "key2": "value2",
+                    "key3": "value3"
+                },
+                "id": "<unique_id>", //unique identifier for the JSON object
+                "category": "application/json" //category of the JSON object
+            }
+            // If 'sendjsondata' is true, the server will also return the JSON data in a stream format on the send API(<serveripandport>/send) for the Client JS to fetch using the fetch API.
+        }
+    }
+]
